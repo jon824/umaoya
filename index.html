@@ -1,124 +1,121 @@
 <!DOCTYPE html>
-<!--=== Coding by CodingLab | www.codinglabweb.com === -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!----======== CSS ======== -->
-    <link rel="stylesheet" href="style.css">
-     
-    <!----===== Iconscout CSS ===== -->
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-
-    <title>Admin Dashboard Panel</title> 
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .login-container h1 {
+            text-align: center;
+        }
+        .login-container input[type="email"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .login-container input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .login-container input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .switch-form {
+            text-align: center;
+            margin-top: 10px;}
+    </style>
 </head>
 <body>
-    <nav>
-        <div class="logo-name">
-            <div class="logo-image">
-                <img src="images/logo.webp" alt="">
+
+    <div class="login-container">
+        <h1>Login</h1>
+        <form id="loginForm">
+            <input type="email" id="emailInput" placeholder="Enter your email" required>
+            <input type="password" id="keywordInput" placeholder="Enter password" required>
+            <input type="submit" value="Login">  
+            <div class="switch-form">
+                <p><a href="login.html" id="showRegisterForm">Create a new account</a></p>
             </div>
+            <div id="errorMessage" class="error-message"></div>
+        </form>
+    </div>
 
-            <span class="logo_name"></span>
-        </div>
+    <script>
+        // Email and keyword pairs mapped to URLs
+        const emailKeywordPairs = {
+            "nawoth2020nsk@gmail.com": { keyword: "nawod2020", url: "admin.html" },
+            "isurula288@gmail.com": { keyword: "isuru", url: "isuru.html" },
+            "user3@example.com": { keyword: "keyword3", url: "page3.html" },
+            "user4@example.com": { keyword: "keyword4", url: "page4.html" },
+            "user5@example.com": { keyword: "keyword5", url: "page5.html" },
+            "user6@example.com": { keyword: "keyword6", url: "page6.html" },
+            "user7@example.com": { keyword: "keyword7", url: "page7.html" },
+            "user8@example.com": { keyword: "keyword8", url: "page8.html" },
+            "user9@example.com": { keyword: "keyword9", url: "page9.html" },
+            "user10@example.com": { keyword: "keyword10", url: "page10.html" }
+        };
 
-        <div class="menu-items">
-            <ul class="nav-links">
-                <li><a href="#">
-                    <i class="uil uil-estate"></i>
-                    <span class="link-name">Dahsboard</span>
-                </a></li>
-                
-                
-                <li class="mode">
-                    <a href="#">
-                        <i class="uil uil-moon"></i>
-                    <span class="link-name">Dark Mode</span>
-                </a>
+        // Function to handle form submission
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form from submitting
 
-                <div class="mode-toggle">
-                  <span class="switch"></span>
-                </div>
-            </li>
-            </ul>
-        </div>
-    </nav>
+            // Get the email and keyword from the input fields
+            const email = document.getElementById("emailInput").value;
+            const keyword = document.getElementById("keywordInput").value;
 
-    <section class="dashboard">
-        <div class="top">
-            <i class="uil uil-bars sidebar-toggle"></i>
+            // Regular expression to validate email format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-            <div class="search-box">
-                <i class="uil uil-search"></i>
-                <input type="text" placeholder="Search here...">
-            </div>
-            
-            <img src="images/logo.png" alt="">
-        </div>
+            // Check if the email is valid
+            if (!emailRegex.test(email)) {
+                document.getElementById("errorMessage").textContent = "Please enter a valid email address.";
+                return;
+            }
 
-        <div class="dash-content">
-            <div class="overview">
-                <div class="title">
-                    <i class="uil uil-tachometer-fast-alt"></i>
-                    <span class="text">Isuru's Dashboard</span>
-                </div>
+            // Check if the email exists in the emailKeywordPairs object
+            if (emailKeywordPairs.hasOwnProperty(email)) {
+                // Check if the keyword matches the correct one for this email
+                if (emailKeywordPairs[email].keyword === keyword) {
+                    // Redirect to the corresponding page
+                    window.location.href = emailKeywordPairs[email].url;
+                } else {
+                    // Incorrect keyword
+                    document.getElementById("errorMessage").textContent = "Incorrect keyword for this email.";
+                }
+            } else {
+                // Email not found
+                document.getElementById("errorMessage").textContent = "Email And password Not Matching .";
+            }
+        });
+    </script>
 
-                <div class="boxes">
-                    <div class="box box1">
-                        <i class="uil uil-thumbs-up"></i>
-                        <span class="text">Total Deposit</span>
-                        <span class="number"> 0</span>
-                    </div>
-                    <div class="box box2">
-                        <i class="uil uil-comments"></i>
-                        <span class="text">Withdraw</span>
-                        <span class="number">0</span>
-                    </div>
-                    <div class="box box3">
-                        <i class="uil uil-share"></i>
-                        <span class="text">Total Earn</span>
-                        <span class="number">0</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="activity">
-                <div class="title">
-                    <i class="uil uil-clock-three"></i>
-                    <span class="text">Recent Activity</span>
-                </div>
-
-                <div class="activity-data">
-                    <div class="data names">
-                        <span class="data-title">Activity</span>
-                        <span class="data-list"><a href="getmoney/index.html" style="text-decoration: none; color: cyan;" > </a>Withdraw Money</a></span>
-         
-                       
-                    </div>
-                    <div class="data type">
-                        <span class="data-title">Type</span>
-                          <span class="data-list">Money</span>
-                   
-                        
-                    </div>
-                    
-                    <div class="data status">
-                        <span class="data-title">Status</span>
-                        <span class="data-list">None</span>
-
-                   </div>
-               
-                    
-                   
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <script src="script.js"></script>
 </body>
 </html>
