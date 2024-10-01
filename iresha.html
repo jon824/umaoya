@@ -48,35 +48,103 @@
     </nav>
 
     <section class="dashboard">
+      
         <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>
+            <style>
+                /* Basic styling for notification */
+                .notification {
+                  position: relative;
+                  display: inline-block;
+                }
+            
+                .notification .bell {
+                  font-size: 45px;
+                  cursor: pointer;
+                  color: cyan;
+                }
+            
+                /* Notification list styling */
+                .notification-list {
+                  display: none; /* Hidden by default */
+                  position: absolute;
+                  top: 30px;
+                  right: 0;
+                  background-color: white;
+                  border: 1px solid #ccc;
+                  border-radius: 5px;
+                  width: 200px;
+                  box-shadow: 0px 8px 16px rgba(255, 0, 0, 0.1);
+                }
+            
+                .notification-list.show {
+                  display: block; /* Show the list when triggered */
+                }
+            
+                .notification-list li {
+                  list-style: none;
+                  padding: 10px;
+                  border-bottom: 1px solid #ddd;
+                }
+            
+                .notification-list li:last-child {
+                  border-bottom: none;
+                }
+              </style>
+            
+              <div class="notification">
+                <!-- Notification Bell Icon -->
+                <i class="uil uil-bell bell"></i>
+            
+                <!-- Notification List -->
+                <ul class="notification-list">
+                  <li>Your Account Has been Verified</li>
+                  <li>Your Id Verified</li>
+                  <li>Your Face Id Verified</li>
+                 
 
+                </ul>
+              </div>
             
+              <!-- Add script to handle notification toggle -->
+              <script>
+                // Toggle notification list on bell click
+                const bell = document.querySelector('.bell');
+                const notificationList = document.querySelector('.notification-list');
             
-            <img src="20240925_183742.jpg" alt="">
+                bell.addEventListener('click', () => {
+                  notificationList.classList.toggle('show');
+                });
+            
+                // Optional: Hide the notification list if clicked outside
+                window.addEventListener('click', (e) => {
+                  if (!bell.contains(e.target) && !notificationList.contains(e.target)) {
+                    notificationList.classList.remove('show');
+                  }
+                });
+              </script>
         </div>
 
         <div class="dash-content">
             <div class="overview">
                 <div class="title">
                     <i class="uil uil-tachometer-fast-alt"></i>
-                    <span class="text">Isuru's Dashboard</span>
+                    <span class="text">Iresha's Dashboard</span>
                 </div>
 
                 <div class="boxes">
                     <div class="box box1">
-                        <i class="uil uil-thumbs-up"></i>
-                        <span class="text">Total Deposit</span>
+                        <i class="uil uil-wallet"></i>
+                                                <span class="text">Total Deposit</span>
                         <span class="number"> 0</span>
                     </div>
                     <div class="box box2">
-                        <i class="uil uil-comments"></i>
-                        <span class="text">Withdraw</span>
+                        <i class="uil uil-money-withdraw"></i>
+                                                <span class="text">Withdraw</span>
                         <span class="number">0</span>
                     </div>
                     <div class="box box3">
-                        <i class="uil uil-share"></i>
-                        <span class="text">Total Earn</span>
+                        <i class="uil uil-chart-line"></i>                         <span class="text">Total Earn</span>
                         <span class="number">0</span>
                     </div>
                 </div>

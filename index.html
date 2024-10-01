@@ -62,14 +62,13 @@
             <input type="password" id="keywordInput" placeholder="Enter password" required>
             <input type="submit" value="Login">  
             <div class="switch-form">
-                <p><a href="login.html" id="showRegisterForm">Create a new account</a></p>
+                <p><a href="login/index.html" id="showRegisterForm">Create a new account</a></p>
             </div>
             <div id="errorMessage" class="error-message"></div>
         </form>
     </div>
 
     <script>
-        // Email and keyword pairs mapped to URLs
         const emailKeywordPairs = {
             "nawoth2020nsk@gmail.com": { keyword: "nawod2020", url: "admin.html" },
             "isurula288@gmail.com": { keyword: "isuru", url: "isuru.html" },
@@ -83,35 +82,33 @@
             "user10@example.com": { keyword: "keyword10", url: "page10.html" }
         };
 
-        // Function to handle form submission
+        
         document.getElementById("loginForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevent form from submitting
+            event.preventDefault(); 
 
-            // Get the email and keyword from the input fields
+            
             const email = document.getElementById("emailInput").value;
             const keyword = document.getElementById("keywordInput").value;
 
-            // Regular expression to validate email format
+            
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-            // Check if the email is valid
+            
             if (!emailRegex.test(email)) {
                 document.getElementById("errorMessage").textContent = "Please enter a valid email address.";
                 return;
             }
 
-            // Check if the email exists in the emailKeywordPairs object
+            
             if (emailKeywordPairs.hasOwnProperty(email)) {
-                // Check if the keyword matches the correct one for this email
+                
                 if (emailKeywordPairs[email].keyword === keyword) {
-                    // Redirect to the corresponding page
+                    
                     window.location.href = emailKeywordPairs[email].url;
                 } else {
-                    // Incorrect keyword
                     document.getElementById("errorMessage").textContent = "Incorrect keyword for this email.";
                 }
             } else {
-                // Email not found
                 document.getElementById("errorMessage").textContent = "Email And password Not Matching .";
             }
         });
