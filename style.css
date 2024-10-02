@@ -479,7 +479,7 @@ nav.close ~ .dashboard .top{
         width: 100%;
     }
     nav.close ~ .dashboard .top{
-        left: 0;
+        left: 25%;
         width: 100%;
     }
 }
